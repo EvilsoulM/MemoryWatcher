@@ -1,4 +1,4 @@
-package com.evilsoulm.demo;
+package com.evilsoulm.memorywatcher;
 
 import org.junit.Test;
 

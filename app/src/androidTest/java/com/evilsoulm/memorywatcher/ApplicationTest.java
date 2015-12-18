@@ -1,4 +1,4 @@
-package com.evilsoulm.demo;
+package com.evilsoulm.memorywatcher;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
