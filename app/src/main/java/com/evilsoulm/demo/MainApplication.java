@@ -1,11 +1,11 @@
-package com.evilsoulm.memorywatcher;
+package com.evilsoulm.demo;
 
 import android.app.Application;
 import android.util.Log;
 
-import com.evilsoulm.library.MemoryListener;
-import com.evilsoulm.library.MemoryWatcher;
-import com.evilsoulm.library.Unit;
+import com.evilsoulm.memorywatcher.MemoryListener;
+import com.evilsoulm.memorywatcher.MemoryWatcher;
+import com.evilsoulm.memorywatcher.Unit;
 
 /**
  * Author by EvilsoulM

@@ -1,4 +1,4 @@
-package com.evilsoulm.library;
+package com.evilsoulm.memorywatcher;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -12,7 +12,10 @@ import android.os.Message;
  */
 public class MemoryWatcher extends Thread {
     private static final String TAG = "MemoryWatcher";
-
+    private Unit unit;
+    private int interval;
+    private InterruptionListener interruptionListener;
+    private MemoryListener listener;
     private final Handler uiHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
@@ -24,10 +27,21 @@ public class MemoryWatcher extends Thread {
         }
     };
 
-    private Unit unit;
-    private int interval;
-    private InterruptionListener interruptionListener;
-    private MemoryListener listener;
+    private MemoryWatcher(Builder builder) {
+        this.unit = builder.unit;
+
+        if (this.unit == null) {
+            this.unit = Unit.MB;
+        }
+        this.interval = builder.interval;
+
+        if (this.interval == 0) {
+            this.interval = Const.DEFAULT_INTERVAL;
+        }
+
+        this.listener = builder.listener;
+        this.interruptionListener = builder.interruptionListener;
+    }
 
     @Override
     public void run() {
@@ -63,7 +77,6 @@ public class MemoryWatcher extends Thread {
         uiHandler.removeCallbacksAndMessages(this);
     }
 
-
     public static class Builder {
         private Unit unit;
         private int interval;
@@ -94,21 +107,5 @@ public class MemoryWatcher extends Thread {
         public MemoryWatcher build() {
             return new MemoryWatcher(this);
         }
-    }
-
-    private MemoryWatcher(Builder builder) {
-        this.unit = builder.unit;
-
-        if (this.unit == null) {
-            this.unit = Unit.MB;
-        }
-        this.interval = builder.interval;
-
-        if (this.interval == 0) {
-            this.interval = Const.DEFAULT_INTERVAL;
-        }
-
-        this.listener = builder.listener;
-        this.interruptionListener = builder.interruptionListener;
     }
 }

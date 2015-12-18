@@ -1,4 +1,4 @@
-package com.evilsoulm.library;
+package com.evilsoulm.memorywatcher;
 
 /**
  * Author by EvilsoulM
